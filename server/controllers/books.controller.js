@@ -23,3 +23,14 @@ export const getBook = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Controlador para agregar un nuevo libro
+export const createBook = async (req, res) => {
+  const newBook = new Book(req.body);
+  try {
+    const savedBook = await newBook.save();
+    res.status(201).json(savedBook);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { getBooks, getBook} from '../controllers/books.controller.js';
+import { getBooks, getBook, createBook} from '../controllers/books.controller.js';
 
 
 const router = Router();
@@ -11,5 +11,7 @@ router.get("/", getBooks);
 // GET one Book
 router.get("/:id", getBook);
 
+// ADD a new Book
+router.post("/", createBook);
 
 export default router;
