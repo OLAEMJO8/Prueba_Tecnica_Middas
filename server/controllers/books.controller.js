@@ -34,3 +34,19 @@ export const createBook = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+// Controlador para actualizar un libro
+export const updateBook = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updatedBook = await Book.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    if (!updatedBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.status(200).json(updatedBook);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
