@@ -1,7 +1,26 @@
-export default function App() {
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Card from "./components/Card.jsx";
+import Form from "./components/Form.jsx";
+
+
+
+
+function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+
+    <div>
+      <BrowserRouter>
+
+        <Routes>
+          <Route path="/" element={<Card />} />
+          <Route path="/add" element={<Form />} />
+          <Route path="/edit/:id" element={<Form />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+
+
+  );
 }
+
+export default App;
