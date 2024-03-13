@@ -1,7 +1,13 @@
 import { Router } from "express";
 
-import { getBooks, getBook, createBook, updateBook, deleteBook} from '../controllers/books.controller.js';
-
+import {
+  getBooks,
+  getBook,
+  createBook,
+  updateBook,
+  deleteBook,
+  addFavorite
+} from "../controllers/books.controller.js";
 
 const router = Router();
 
@@ -16,6 +22,9 @@ router.post("/", createBook);
 
 // UPDATE a Book
 router.put("/:id", updateBook);
+
+//ADD A favorite
+router.put("/:id/addFavorite", addFavorite);
 
 // DELETE a Book
 router.delete("/:id", deleteBook);
