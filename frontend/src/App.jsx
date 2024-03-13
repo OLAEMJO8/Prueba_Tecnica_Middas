@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Card from "./components/Card.jsx";
-import Form from "./components/Form.jsx";
+
+import { Navbar } from "./components/Navbar.jsx";
+import Home from "./pages/Home.jsx";
+
 
 
 
@@ -10,11 +12,9 @@ function App() {
 
     <div>
       <BrowserRouter>
-
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Card />} />
-          <Route path="/add" element={<Form />} />
-          <Route path="/edit/:id" element={<Form />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
