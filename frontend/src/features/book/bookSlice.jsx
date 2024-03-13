@@ -23,6 +23,14 @@ export const deleteBook = createAsyncThunk("books/deleteBook", async (id) => {
   return id;
 });
 
+export const addFavorite = createAsyncThunk(
+  "books/addFavorite",
+  async (id) => {
+    const response = await axios.put(`${baseURL}${id}/addFavorite`);
+    return response.data;
+  }
+);
+
 const bookSlice = createSlice({
   name: "books",
   initialState: {
@@ -35,7 +43,6 @@ const bookSlice = createSlice({
         state.status = "succeeded";
         state.books = action.payload;
       })
-
       .addCase(addBook.fulfilled, (state, action) => {
         state.books.push(action.payload);
       })
@@ -48,7 +55,16 @@ const bookSlice = createSlice({
         }
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
-        state.books = state.books.filter((book) => book.id !== action.payload);
+        state.books = state.books.filter((book) => book._id !== action.payload);
+      })
+      .addCase(addFavorite.fulfilled, (state, action) => {
+        const bookId = action.meta.arg;
+        const index = state.books.findIndex(
+          (book) => book._id === bookId
+        );
+        if (index !== -1) {
+          state.books[index].isFavorite = !state.books[index].isFavorite;
+        }
       });
   },
 });
