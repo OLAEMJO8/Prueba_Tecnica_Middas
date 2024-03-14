@@ -24,9 +24,21 @@ export default function Home() {
     dispatch(updateBookById({ id, updatedData }));
   };
   return (
-    <div className="bg-white p-4 text-white">
-      <div className="flex items-center justify-center h-full">
-        <div className="w-4/6">
+    <div className="bg-white p-4">
+    <div className="flex items-center justify-center h-full">
+
+      {books.length === 0 ? (
+        <div className="flex flex-col items-center justify-center h-screen">
+          <img src="/middas_app_logo.png" to="/" alt="Logo" />
+          <div className="text-4xl mb-4 text-black">Sin libros</div>
+
+          <a href="/add" className="bg-teal-950 inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-white hover:bg-teal-900 mt-4 lg:mt-0 mr-4">Agregar libros</a>
+
+
+        </div>
+
+      ) : (
+        <div className="w-4/6 text-white">
           <div className="grid grid-cols-3 gap-3">
             {books.map(book => (
               <Card
@@ -38,7 +50,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </div>
+      )}
+
     </div>
+    </div>
+
   );
 }
