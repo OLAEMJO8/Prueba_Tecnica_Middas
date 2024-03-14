@@ -9,7 +9,7 @@ const BookSchema = new mongoose.Schema(
     isFavorite: { type: Boolean, default: false },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 
