@@ -53,11 +53,21 @@ export default function Form() {
     }
   }, [params, books, status]);
 
-
-  const formattedPublicationYear = book.publicationYear ? new Date(book.publicationYear).toISOString().split('T')[0] : '';
-
-
-
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    if (month < 10) {
+      month = `0${month}`; 
+    }
+    let day = date.getDate();
+    if (day < 10) {
+      day = `0${day}`; 
+    }
+    return `${year}-${month}-${day}`;
+  };
+  
+  const formattedPublicationYear = book.publicationYear ? formatDate(new Date(book.publicationYear)) : '';
 
   return (
     <div className="bg-white h-screen">

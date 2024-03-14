@@ -48,12 +48,12 @@ const bookSlice = createSlice({
       })
       .addCase(updateBook.fulfilled, (state, action) => {
         const index = state.books.findIndex(
-          (book) => book._id === action.payload.id
+          (book) => book._id === action.payload._id
         );
         if (index !== -1) {
           state.books[index] = action.payload;
         }
-      })
+      })      
       .addCase(deleteBook.fulfilled, (state, action) => {
         state.books = state.books.filter((book) => book._id !== action.payload);
       })
